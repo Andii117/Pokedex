@@ -7,7 +7,8 @@ class form extends React.Component{
 
         this.state = {
             name : "",
-            img : "#"
+            img_male : "#",
+            img_shiny: "#"
         }
 
     }
@@ -20,9 +21,10 @@ class form extends React.Component{
         //let res = await fetch('https://pokeapi.co/api/v2/pokemon/ditto');
         let data = await res.json();
 
-        //console.log(data.sprites.front_default);
+        console.log(data.sprites);
         this.setState({
-            img: data.sprites.front_default
+            img_male: data.sprites.front_default,
+            img_shiny: data.sprites.front_shiny
         });
     }
 
@@ -34,7 +36,7 @@ class form extends React.Component{
 
     handleSubmit = event =>{
         var sub = this.state.name;
-        console.log(sub);
+        //console.log(sub);
         this.pokeAPI();
         //Evento que permite que no se recargue la pagina
         event.preventDefault();
@@ -63,8 +65,11 @@ class form extends React.Component{
                         </div>
                     <button type="submit" href="#" className="btn btn-primary">Buscar el pokémon</button>
                     <br/><br/>
-                    <label>Imagen frontal</label><br/>
-                    <img src={this.state.img} className="img-thumbnail" alt="..."></img>
+                    <label>Pokémon normal</label><br/>
+                    <img src={this.state.img_male} className="img-thumbnail" alt="..."></img><br/>
+                    <label>Pokémon Shiny</label><br/>
+                    <img src={this.state.img_shiny} className="img-thumbnail" alt="..."></img>
+                
                 </form>
             </div>
             <div className="card-footer text-muted">
